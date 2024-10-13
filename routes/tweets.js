@@ -42,4 +42,13 @@ router.get("/delete/:token", (req, res)=>{
   });
 });
 
+//Tweet liked
+router.get("/liked/:message", (req, res)=>{
+  Tweet.findOne({message: req.params.message})
+  .populate("author")
+  .then((data)=>{
+     res.json({result: true, data})
+  });
+});
+
 module.exports = router;
