@@ -32,4 +32,14 @@ router.get("/get", (req, res) => {
     });
 });
 
+//Erase a message
+router.get("/delete/:token", (req, res)=>{
+  Tweet.find()
+  .populate("author")
+  .then((data)=>{
+    data.filter(e => e.author.token !== req.params.token)
+     res.json({result: true, data})
+  });
+});
+
 module.exports = router;
